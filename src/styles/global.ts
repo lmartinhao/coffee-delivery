@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -7,9 +7,14 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  :focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px ${(props) => props.theme['purple-500']};
+  }
+
   body {
-    background: ${(props) => props.theme["gray-100"]};
-    color: ${(props) => props.theme["gray-900"]};
+    background: ${(props) => props.theme['gray-100']};
+    color: ${(props) => props.theme['gray-900']};
   }
 
   border-style, input-security, textarea, button {
