@@ -1,11 +1,11 @@
-import { CartBox, HeaderContainer, LocalizationBox } from './styles'
+import { CartBox, NavbarContainer, LocalizationBox } from './styles'
 
 import Logo from '../../assets/coffee-logo.svg'
 import { ShoppingCart, MapPin } from 'phosphor-react'
 
-export function Header() {
+export function Navbar() {
   return (
-    <HeaderContainer>
+    <NavbarContainer>
       <a href="/">
         <img src={Logo} alt="" />
       </a>
@@ -21,6 +21,6 @@ export function Header() {
           </a>
         </CartBox>
       </nav>
-    </HeaderContainer>
+    </NavbarContainer>
   )
 }
