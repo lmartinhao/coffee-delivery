@@ -4,9 +4,34 @@ export const SuccessContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-end;
 
   margin: 0 auto;
   gap: 4.75rem;
+
+  h1 {
+    margin-top: 5rem;
+    font-family: 'Baloo 2';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 2rem;
+    line-height: 130%;
+
+    color: ${(props) => props.theme['yellow-700']};
+  }
+
+  span {
+    font-family: 'Roboto';
+    font-size: 1.25rem;
+    line-height: 130%;
+
+    color: #403937;
+    font-stretch: 100;
+  }
+
+  img {
+    margin-bottom: -1rem;
+  }
 `
 
 export const SuccessIconContainer = styled.div`
