@@ -112,7 +112,7 @@ export const ItemValueContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   box-sizing: border-box;
 
   gap: 1.438rem;
@@ -144,5 +144,45 @@ export const PriceContainer = styled.div`
     line-height: 130%;
 
     color: #574f4d;
+  }
+`
+
+export const AddToCartContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+`
+
+export const QuantityContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 6px;
+  padding: 0 0.5rem;
+
+  height: 32px;
+
+  background: ${(props) => props.theme['gray-300']};
+
+  span {
+    color: ${(props) => props.theme['purple-700']};
+  }
+
+  svg {
+    color: ${(props) => props.theme['purple-500']};
+  }
+`
+export const AddToCartButton = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  svg {
+    color: ${(props) => props.theme['gray-100']};
+    background: ${(props) => props.theme['purple-700']};
+    height: 32px;
+    width: 32px;
+    padding: 0.5rem;
+    border-radius: 6px;
   }
 `
