@@ -17,6 +17,19 @@ export const ProductsContainer = styled.div`
   }
 `
 
+export const ProductsArea = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  max-width: 70rem;
+
+  div + div {
+    margin-bottom: 2.5rem;
+  }
+`
+
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -32,6 +45,7 @@ export const CardContainer = styled.div`
     height: 7.5rem;
     width: 7.5rem;
     margin-top: -10%;
+    margin-bottom: 1rem;
   }
 `
 
@@ -65,14 +79,18 @@ export const TextContainer = styled.span`
   }
 `
 
-export const TagContainer = styled.span`
+export const TagArea = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 0px;
-  margin: 1rem;
 
+  margin-bottom: 1rem;
+  gap: 0.25rem;
+`
+
+export const TagContainer = styled.span`
   background: ${(props) => props.theme['yellow-100']};
   border-radius: 100px;
 
