@@ -22,4 +22,13 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     font-size: 1rem;
   }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  input[type="radio"]:checked + label {
+    background: ${(props) => props.theme['purple-100']};
+    box-shadow: 0 0 0 1px ${(props) => props.theme['purple-500']};
+  }
 `
