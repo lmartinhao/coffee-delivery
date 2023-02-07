@@ -41,13 +41,13 @@ export function Checkout() {
               </div>
             </FormHeaderBoxYellow>
 
-            <input placeholder="CEP" />
-            <input placeholder="Rua" />
-            <input placeholder="Número" />
-            <input placeholder="Complemento" required={false} />
-            <input placeholder="Bairro" />
-            <input placeholder="Cidade" />
-            <input placeholder="UF" />
+            <input placeholder="CEP" type="number" size={8} required />
+            <input placeholder="Rua" required />
+            <input placeholder="Número" required />
+            <input placeholder="Complemento" />
+            <input placeholder="Bairro" required />
+            <input placeholder="Cidade" required />
+            <input placeholder="UF" size={2} required />
           </AddressFormContainer>
 
           <PaymentFormContainer>
