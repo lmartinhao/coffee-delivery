@@ -23,7 +23,7 @@ export function Products() {
         {coffeeList.map((coffee) => {
           return (
             <CardContainer key={coffee.id}>
-              <img src={coffee.svg} alt="Café tipo americano" />
+              <img src={coffee.svg} alt={coffee.title} />
 
               <TagArea>
                 {coffee.tags.map((tag) => {
@@ -41,7 +41,7 @@ export function Products() {
                 <ItemValueContainer>
                   <PriceContainer>
                     <span>R$</span>
-                    <h3>{coffee.price}</h3>
+                    <h3>{coffee.price}0</h3>
                   </PriceContainer>
 
                   <AddToCartContainer>
