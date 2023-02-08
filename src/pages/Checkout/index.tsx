@@ -1,3 +1,5 @@
+import { useForm } from 'react-hook-form'
+
 import {
   Bank,
   CreditCard,
@@ -27,6 +29,12 @@ import {
 import { coffeeList } from '../Home/components/Products/CoffeList'
 
 export function Checkout() {
+  const { register, handleSubmit } = useForm()
+
+  function handleCreateOrder(data: any) {
+    console.log(data)
+  }
+
   return (
     <CheckoutContainer>
       <div>
@@ -41,13 +49,28 @@ export function Checkout() {
               </div>
             </FormHeaderBoxYellow>
 
-            <input placeholder="CEP" type="number" size={8} required />
-            <input placeholder="Rua" required />
-            <input placeholder="Número" required />
-            <input placeholder="Complemento" />
-            <input placeholder="Bairro" required />
-            <input placeholder="Cidade" required />
-            <input placeholder="UF" size={2} required />
+            <input
+              placeholder="CEP"
+              type="number"
+              size={8}
+              required
+              {...register('cep')}
+            />
+            <input placeholder="Rua" required {...register('street')} />
+            <input placeholder="Número" required {...register('number')} />
+            <input placeholder="Complemento" {...register('complement')} />
+            <input
+              placeholder="Bairro"
+              required
+              {...register('neighborhood')}
+            />
+            <input placeholder="Cidade" required {...register('city')} />
+            <input
+              placeholder="UF"
+              size={2}
+              required
+              {...register('district')}
+            />
           </AddressFormContainer>
 
           <PaymentFormContainer>
@@ -142,7 +165,9 @@ export function Checkout() {
               <h3>R$ 50,00</h3>
             </div>
           </OrderOverviewContainer>
-          <button type="submit">Confirmar Pedido</button>
+          <button type="submit" onSubmit={handleSubmit(handleCreateOrder)}>
+            Confirmar Pedido
+          </button>
         </OrderContainer>
       </div>
     </CheckoutContainer>

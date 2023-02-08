@@ -9,7 +9,6 @@ export function Navbar() {
       <a href="/">
         <img src={Logo} alt="" />
       </a>
-
       <nav>
         <LocalizationBox>
           <MapPin size={22} />

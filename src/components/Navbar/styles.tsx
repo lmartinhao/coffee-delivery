@@ -16,7 +16,7 @@ export const NavbarContainer = styled.header`
   }
 `
 
-export const BaseBox = styled.a`
+export const BaseBox = styled.div`
   display: flex;
   flex-direction: row;
 
