@@ -1,12 +1,12 @@
 import { CartBox, NavbarContainer, LocalizationBox } from './styles'
-import { useForm, FormActions } from '../../contexts/FormContext'
+import { useCoffeeForm } from '../../contexts/FormContext'
 
 import Logo from '../../assets/coffee-logo.svg'
 import { ShoppingCart, MapPin } from 'phosphor-react'
 import { Link } from 'react-router-dom'
 
 export function Navbar() {
-  const { state } = useForm()
+  const { state } = useCoffeeForm()
 
   function handleOverviewOrder() {
     console.log(state.cart)
@@ -29,7 +29,7 @@ export function Navbar() {
               size={22}
               weight="fill"
             />
-            {state.cart.length}
+            <div>{state.cart.length}</div>
           </Link>
         </CartBox>
       </nav>

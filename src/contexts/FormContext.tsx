@@ -63,7 +63,7 @@ export function FormProvider({ children }: FormProviderProps) {
 }
 
 // 4. context hook
-export function useForm() {
+export function useCoffeeForm() {
   const context = useContext(FormContext)
   if (context === undefined) {
     throw new Error('useForm precisa ser usado dentro do FormProvider')

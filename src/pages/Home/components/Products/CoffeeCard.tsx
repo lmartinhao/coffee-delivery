@@ -1,7 +1,7 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useForm, FormActions } from '../../../../contexts/FormContext'
+import { useCoffeeForm, FormActions } from '../../../../contexts/FormContext'
 import {
   AddToCartButton,
   AddToCartContainer,
@@ -32,7 +32,7 @@ export function CoffeeCard({
   price,
 }: CoffeeCardProps) {
   const [quantityOfCoffees, setQuantityOfCoffees] = useState<number[]>([])
-  const { state, dispatch } = useForm()
+  const { state, dispatch } = useCoffeeForm()
 
   function handleAddToCart(id: number) {
     dispatch({
