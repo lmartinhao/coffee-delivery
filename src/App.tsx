@@ -4,15 +4,18 @@ import { Router } from './Router'
 
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
+import { FormProvider } from './contexts/FormContext'
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <FormProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
 
-      <GlobalStyle />
+        <GlobalStyle />
+      </FormProvider>
     </ThemeProvider>
   )
 }

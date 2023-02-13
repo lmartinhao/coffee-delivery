@@ -10,6 +10,12 @@ export const AddressFormContainer = styled.div`
   border-radius: 6px;
   margin-top: 0.938rem;
   margin-bottom: 0.75rem;
+`
+
+export const AddressInputArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 
   input {
     background: ${(props) => props.theme['gray-300']};
@@ -17,10 +23,38 @@ export const AddressFormContainer = styled.div`
 
     border: 1px solid #e6e5e5;
     border-radius: 4px;
+    display: block;
   }
 
-  input + input {
+  div {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    gap: 0.75rem;
+  }
+
+  .line + .line {
     margin-top: 1rem;
+  }
+
+  .col-12 {
+    width: 100%;
+  }
+
+  .col-8 {
+    width: 66.66%;
+  }
+
+  .col-6 {
+    width: 50%;
+  }
+
+  .col-4 {
+    width: 33.33%;
+  }
+
+  .col-2 {
+    width: 14%;
   }
 `
 
