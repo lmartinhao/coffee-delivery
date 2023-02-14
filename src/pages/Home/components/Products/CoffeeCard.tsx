@@ -31,19 +31,39 @@ export function CoffeeCard({
   content,
   price,
 }: CoffeeCardProps) {
-  const [quantityOfCoffees, setQuantityOfCoffees] = useState<number[]>([])
+  const [addedCoffees, setAddedCoffees] = useState<string[]>([])
+  const [removedCoffees, setRemovedCoffees] = useState<string[]>([])
   const { state, dispatch } = useCoffeeForm()
 
-  function handleAddToCart(id: number) {
+  function handleAddToCart(title: string) {
+    const newCart = [...state.cart, title]
     dispatch({
       type: FormActions.setCart,
-      payload: id,
+      payload: newCart,
     })
-    setQuantityOfCoffees([...quantityOfCoffees, id])
+    setAddedCoffees([...addedCoffees, title])
+    console.log(state.cart)
+  }
+
+  function handleRemoveFromCart(title: string) {
+    const array = [...state.cart]
+    const index = state.cart.indexOf(title)
+
+    const cartWithoutRemovedCoffees = [
+      ...array.slice(0, index),
+      ...array.slice(index + 1),
+    ]
+    dispatch({
+      type: FormActions.setCart,
+      payload: cartWithoutRemovedCoffees,
+    })
+
+    setRemovedCoffees([...removedCoffees, title])
+    console.log(cartWithoutRemovedCoffees)
   }
 
   function handleOrder(data: string) {
-    console.log(`${quantityOfCoffees.length} - ${data}`)
+    console.log(`${addedCoffees.length} - ${data}`)
     console.log(state.cart)
   }
 
@@ -72,9 +92,9 @@ export function CoffeeCard({
 
           <AddToCartContainer>
             <QuantityContainer>
-              <Plus onClick={() => handleAddToCart(id)} />
-              <span>{quantityOfCoffees.length}</span>
-              <Minus />
+              <Plus onClick={() => handleAddToCart(title)} />
+              <span>{addedCoffees.length - removedCoffees.length}</span>
+              <Minus onClick={() => handleRemoveFromCart(title)} />
             </QuantityContainer>
             <AddToCartButton>
               <Link to="/checkout">

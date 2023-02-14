@@ -6,7 +6,7 @@
 import { createContext, ReactNode, useContext, useReducer } from 'react'
 
 type State = {
-  cart: Array<number>
+  cart: Array<string>
   address: Object
   payment: string
 }
@@ -44,7 +44,7 @@ const FormContext = createContext<ContextType | undefined>(undefined)
 function formReducer(state: State, action: Action) {
   switch (action.type) {
     case FormActions.setCart:
-      return { ...state, cart: [...state.cart, action.payload] }
+      return { ...state, cart: action.payload }
     case FormActions.setAddress:
       return { ...state, address: action.payload }
     case FormActions.setPayment:
