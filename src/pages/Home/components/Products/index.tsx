@@ -1,21 +1,6 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
 import { CoffeeCard } from './CoffeeCard'
 import { coffeeList } from './CoffeList'
-import {
-  AddToCartButton,
-  AddToCartContainer,
-  CardContainer,
-  ItemValueContainer,
-  PriceContainer,
-  ProductsArea,
-  ProductsContainer,
-  QuantityContainer,
-  TagArea,
-  TagContainer,
-  TextContainer,
-} from './styles'
+import { ProductsArea, ProductsContainer } from './styles'
 
 export function Products() {
   return (

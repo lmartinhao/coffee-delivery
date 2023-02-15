@@ -1,19 +1,23 @@
-import { Minus, Plus, Trash } from 'phosphor-react'
 import {
-  AddAndRemoveContainer,
   CheckoutContainer,
   OrderContainer,
   OrderOverviewContainer,
   OrderProductsCard,
-  ProductInfoDisplay,
-  QuantityContainer,
 } from './styles'
 
 import { coffeeList } from '../Home/components/Products/CoffeList'
 import { AddressForm } from './components/AddressForm'
 import { PaymentForm } from './components/PaymentForm'
+import { OrderCart } from './components/OrderCart'
+import { useCoffeeForm } from '../../contexts/FormContext'
 
 export function Checkout() {
+  const { state } = useCoffeeForm()
+  const uniqueCoffeesCartList = Array.from(
+    new Set(state.cart.map((coffee) => coffee)),
+  )
+  console.log(uniqueCoffeesCartList)
+
   return (
     <CheckoutContainer>
       <div>
@@ -25,35 +29,26 @@ export function Checkout() {
         <h2>Cafés selecionados</h2>
         <OrderContainer>
           <div>
-            {coffeeList
-              .filter((coffee) => coffee.title.includes('Expresso'))
-              .map((selectedCoffee) => {
-                return (
-                  <OrderProductsCard key={selectedCoffee.id}>
-                    <ProductInfoDisplay>
-                      <img
-                        src={selectedCoffee.svg}
-                        alt={selectedCoffee.title}
+            {uniqueCoffeesCartList
+              .map((coffeeName) => {
+                return coffeeList.filter(
+                  (coffee) => coffee.title === coffeeName,
+                )
+              })
+              .map((cartItem) => {
+                return cartItem.map((selectedCoffee) => {
+                  return (
+                    <OrderProductsCard key={selectedCoffee.id}>
+                      <OrderCart
+                        svg={selectedCoffee.svg}
+                        title={selectedCoffee.title}
                       />
                       <div>
-                        <span>{selectedCoffee.title}</span>
-                        <QuantityContainer>
-                          <AddAndRemoveContainer>
-                            <Plus /> 2 <Minus />
-                          </AddAndRemoveContainer>
-                          <AddAndRemoveContainer>
-                            <button type="reset">
-                              <Trash /> Remover
-                            </button>
-                          </AddAndRemoveContainer>
-                        </QuantityContainer>
+                        <strong>R$ {selectedCoffee.price * 2}0</strong>
                       </div>
-                    </ProductInfoDisplay>
-                    <div>
-                      <strong>R$ {selectedCoffee.price * 2}0</strong>
-                    </div>
-                  </OrderProductsCard>
-                )
+                    </OrderProductsCard>
+                  )
+                })
               })}
           </div>
 

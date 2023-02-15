@@ -14,9 +14,9 @@ export function Navbar() {
 
   return (
     <NavbarContainer>
-      <a href="/">
+      <Link to="/">
         <img src={Logo} alt="" />
-      </a>
+      </Link>
       <nav>
         <LocalizationBox>
           <MapPin size={22} />
