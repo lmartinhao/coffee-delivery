@@ -16,7 +16,6 @@ export function Checkout() {
   const uniqueCoffeesCartList = Array.from(
     new Set(state.cart.map((coffee) => coffee)),
   )
-  console.log(uniqueCoffeesCartList)
 
   return (
     <CheckoutContainer>
@@ -44,7 +43,16 @@ export function Checkout() {
                         title={selectedCoffee.title}
                       />
                       <div>
-                        <strong>R$ {selectedCoffee.price * 2}0</strong>
+                        <strong>
+                          R${' '}
+                          {(
+                            selectedCoffee.price *
+                            state.cart.filter(
+                              (coffee) => coffee === selectedCoffee.title,
+                            ).length
+                          ).toFixed(1)}
+                          0
+                        </strong>
                       </div>
                     </OrderProductsCard>
                   )
