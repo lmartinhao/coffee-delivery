@@ -20,7 +20,7 @@ export function Navbar() {
       <nav>
         <LocalizationBox>
           <MapPin size={22} />
-          <span>Porto Alegre, RS</span>
+          <span>São Paulo, SP</span>
         </LocalizationBox>
         <CartBox>
           <Link to="/checkout">

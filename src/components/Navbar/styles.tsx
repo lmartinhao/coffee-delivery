@@ -68,4 +68,13 @@ export const LocalizationBox = styled(BaseBox)`
   svg {
     color: ${(props) => props.theme['purple-500']};
   }
+
+  span {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 130%;
+
+    color: ${(props) => props.theme['purple-700']};
+  }
 `

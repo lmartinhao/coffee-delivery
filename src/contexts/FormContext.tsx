@@ -7,7 +7,15 @@ import { createContext, ReactNode, useContext, useReducer } from 'react'
 
 type State = {
   cart: Array<string>
-  address: Array<Object>
+  address: {
+    cep: string
+    street: string
+    number: string
+    complement: string
+    neighborhood: string
+    city: string
+    district: string
+  }
   payment: string
 }
 
@@ -33,7 +41,15 @@ type ContextType = {
 
 const initialData: State = {
   cart: [],
-  address: [],
+  address: {
+    cep: '',
+    street: '',
+    number: '',
+    complement: '',
+    neighborhood: '',
+    city: '',
+    district: '',
+  },
   payment: '',
 }
 

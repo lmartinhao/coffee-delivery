@@ -14,7 +14,7 @@ const newAddressFormSchema = zod.object({
   cep: zod.string().length(9, 'Informe seu CEP'),
   street: zod.string().min(1, 'Informe o nome da rua'),
   number: zod.string().min(1, 'Informe o número ou SN'),
-  complement: zod.string().min(1, 'Informe o complemento ou NA'),
+  complement: zod.string(),
   neighborhood: zod.string().min(1, 'Informe o bairro'),
   city: zod.string().min(1, 'Informe a cidade'),
   district: zod.string().min(2, 'Informe um Estado válido'),
@@ -24,7 +24,7 @@ type NewAdressFormData = zod.infer<typeof newAddressFormSchema>
 
 export function AddressForm() {
   const { state, dispatch } = useCoffeeForm()
-  const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
+  const { register, handleSubmit } = useForm<NewAdressFormData>({
     resolver: zodResolver(newAddressFormSchema),
     defaultValues: {
       cep: '',
@@ -37,12 +37,11 @@ export function AddressForm() {
     },
   })
 
-  function handleCreateOrder(data: NewAdressFormData) {
+  function handleCompleteAddress(data: NewAdressFormData) {
     dispatch({
       type: FormActions.setAddress,
       payload: data,
     })
-    console.log(state)
   }
 
   return (
@@ -58,7 +57,7 @@ export function AddressForm() {
       <AddressInputArea>
         <form
           id="orderForm"
-          onSubmit={handleSubmit(handleCreateOrder)}
+          onSubmit={handleSubmit(handleCompleteAddress)}
           action=""
         >
           <input

@@ -37,6 +37,7 @@ export function OrderCart({ svg, title }: OrderCardProps) {
   }
 
   const coffeeQuantityPerType = state.cart.filter((coffee) => coffee === title)
+
   return (
     <ProductInfoDisplay>
       <img src={svg} alt={title} />

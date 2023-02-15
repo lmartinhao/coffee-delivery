@@ -9,11 +9,11 @@ import { coffeeList } from '../Home/components/Products/CoffeList'
 import { AddressForm } from './components/AddressForm'
 import { PaymentForm } from './components/PaymentForm'
 import { OrderCart } from './components/OrderCart'
-import { useCoffeeForm } from '../../contexts/FormContext'
+import { FormActions, useCoffeeForm } from '../../contexts/FormContext'
 import { useNavigate } from 'react-router-dom'
 
 export function Checkout() {
-  const { state } = useCoffeeForm()
+  const { state, dispatch } = useCoffeeForm()
   const navigate = useNavigate()
 
   const uniqueCoffeesCartList = Array.from(
@@ -35,7 +35,16 @@ export function Checkout() {
   const deliveryTax = 3.5
 
   function handleOrder() {
-    navigate('/success')
+    console.log(state)
+    if (state.address.street !== '' || state.address.number !== '') {
+      navigate('/success')
+      dispatch({
+        type: FormActions.setCart,
+        payload: [],
+      })
+    } else {
+      alert('Por favor, preencha os dados')
+    }
   }
 
   return (

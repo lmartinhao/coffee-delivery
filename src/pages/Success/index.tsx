@@ -8,8 +8,13 @@ import {
   TextContainer,
 } from './styles'
 import Illustration from '../../assets/Illustration.svg'
+import { useCoffeeForm } from '../../contexts/FormContext'
 
 export function Success() {
+  const { state } = useCoffeeForm()
+  const deliveryAddress = state.address
+  const paymentMethod = state.payment
+
   return (
     <SuccessContainer>
       <div>
@@ -21,9 +26,10 @@ export function Success() {
             <MapPin size={16} weight="fill" />
             <TextContainer>
               <span>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Entrega em{' '}
+                <strong>{`${deliveryAddress.street}, ${deliveryAddress.number}`}</strong>
               </span>
-              <span>Farrapos - Porto Alegre, RS</span>
+              <span>{`${deliveryAddress.neighborhood} - ${deliveryAddress.city}, ${deliveryAddress.district}`}</span>
             </TextContainer>
           </SuccessIconBoxPurple>
           <SuccessIconBoxLightYellow>
@@ -38,9 +44,13 @@ export function Success() {
           <SuccessIconBoxDarkYellow>
             <CurrencyDollar size={16} weight="fill" />
             <TextContainer>
-              <span>Previsão de entrega</span>
+              <span>Pagamento na entrega</span>
               <span>
-                <strong>20 min - 30 min </strong>
+                {paymentMethod === 'credit' && (
+                  <strong>Cartão de Crédito</strong>
+                )}
+                {paymentMethod === 'debit' && <strong>Cartão de Débito</strong>}
+                {paymentMethod === 'money' && <strong>Dinheiro</strong>}
               </span>
             </TextContainer>
           </SuccessIconBoxDarkYellow>
