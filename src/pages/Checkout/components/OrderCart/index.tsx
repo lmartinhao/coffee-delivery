@@ -38,6 +38,17 @@ export function OrderCart({ svg, title }: OrderCardProps) {
 
   const coffeeQuantityPerType = state.cart.filter((coffee) => coffee === title)
 
+  function handleRemoveAllCoffeesFromCart(title: string) {
+    const coffeeCartWithoutRemovedOnes = state.cart.filter(
+      (coffee) => coffee !== title,
+    )
+    console.log(coffeeCartWithoutRemovedOnes)
+    dispatch({
+      type: FormActions.setCart,
+      payload: coffeeCartWithoutRemovedOnes,
+    })
+  }
+
   return (
     <ProductInfoDisplay>
       <img src={svg} alt={title} />
@@ -50,7 +61,10 @@ export function OrderCart({ svg, title }: OrderCardProps) {
             <Minus onClick={() => handleRemoveFromCart(title)} />
           </AddAndRemoveContainer>
           <AddAndRemoveContainer>
-            <button type="reset">
+            <button
+              onClick={() => handleRemoveAllCoffeesFromCart(title)}
+              type="reset"
+            >
               <Trash /> Remover
             </button>
           </AddAndRemoveContainer>
