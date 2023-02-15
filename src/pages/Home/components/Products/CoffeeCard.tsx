@@ -55,10 +55,6 @@ export function CoffeeCard({
     })
   }
 
-  function handleOrder() {
-    console.log(state.cart)
-  }
-
   return (
     <CardContainer key={id}>
       <img src={svg} alt={title} />
@@ -92,11 +88,7 @@ export function CoffeeCard({
             </QuantityContainer>
             <AddToCartButton>
               <Link to="/checkout">
-                <ShoppingCart
-                  onClick={() => handleOrder()}
-                  size={22}
-                  weight="fill"
-                />
+                <ShoppingCart size={22} weight="fill" />
               </Link>
             </AddToCartButton>
           </AddToCartContainer>
