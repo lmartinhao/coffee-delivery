@@ -1,5 +1,5 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import { useCoffeeForm } from '../../../../contexts/FormContext'
+import { FormActions, useCoffeeForm } from '../../../../contexts/FormContext'
 import {
   AddAndRemoveContainer,
   ProductInfoDisplay,
@@ -12,7 +12,29 @@ type OrderCardProps = {
 }
 
 export function OrderCart({ svg, title }: OrderCardProps) {
-  const { state } = useCoffeeForm()
+  const { state, dispatch } = useCoffeeForm()
+
+  function handleAddToCart(title: string) {
+    const newCart = [...state.cart, title]
+    dispatch({
+      type: FormActions.setCart,
+      payload: newCart,
+    })
+  }
+
+  function handleRemoveFromCart(title: string) {
+    const array = [...state.cart]
+    const index = state.cart.indexOf(title)
+
+    const cartWithoutRemovedCoffees = [
+      ...array.slice(0, index),
+      ...array.slice(index + 1),
+    ]
+    dispatch({
+      type: FormActions.setCart,
+      payload: cartWithoutRemovedCoffees,
+    })
+  }
 
   const coffeeQuantityPerType = state.cart.filter((coffee) => coffee === title)
   return (
@@ -22,7 +44,9 @@ export function OrderCart({ svg, title }: OrderCardProps) {
         <span>{title}</span>
         <QuantityContainer>
           <AddAndRemoveContainer>
-            <Plus /> {coffeeQuantityPerType.length} <Minus />
+            <Plus onClick={() => handleAddToCart(title)} />{' '}
+            {coffeeQuantityPerType.length}{' '}
+            <Minus onClick={() => handleRemoveFromCart(title)} />
           </AddAndRemoveContainer>
           <AddAndRemoveContainer>
             <button type="reset">

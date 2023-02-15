@@ -77,7 +77,7 @@ export function Checkout() {
           <OrderOverviewContainer>
             <div>
               <h4>Total de itens</h4>
-              <span>R$ {totalPrice}0</span>
+              <span>R$ {totalPrice.toFixed(1)}0</span>
             </div>
             <div>
               <h4>Entrega</h4>

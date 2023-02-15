@@ -31,8 +31,6 @@ export function CoffeeCard({
   content,
   price,
 }: CoffeeCardProps) {
-  const [addedCoffees, setAddedCoffees] = useState<string[]>([])
-  const [removedCoffees, setRemovedCoffees] = useState<string[]>([])
   const { state, dispatch } = useCoffeeForm()
 
   function handleAddToCart(title: string) {
@@ -41,8 +39,6 @@ export function CoffeeCard({
       type: FormActions.setCart,
       payload: newCart,
     })
-    setAddedCoffees([...addedCoffees, title])
-    console.log(state.cart)
   }
 
   function handleRemoveFromCart(title: string) {
@@ -57,13 +53,9 @@ export function CoffeeCard({
       type: FormActions.setCart,
       payload: cartWithoutRemovedCoffees,
     })
-
-    setRemovedCoffees([...removedCoffees, title])
-    console.log(cartWithoutRemovedCoffees)
   }
 
-  function handleOrder(data: string) {
-    console.log(`${addedCoffees.length} - ${data}`)
+  function handleOrder() {
     console.log(state.cart)
   }
 
@@ -101,7 +93,7 @@ export function CoffeeCard({
             <AddToCartButton>
               <Link to="/checkout">
                 <ShoppingCart
-                  onClick={() => handleOrder(title)}
+                  onClick={() => handleOrder()}
                   size={22}
                   weight="fill"
                 />
