@@ -17,6 +17,20 @@ export function Checkout() {
     new Set(state.cart.map((coffee) => coffee)),
   )
 
+  const totalPrice = state.cart
+    .map((coffeeName) => {
+      return coffeeList.filter((coffee) => coffee.title === coffeeName)
+    })
+    .map((cartItem) => {
+      return cartItem.map((selectedCoffee) => {
+        return selectedCoffee.price
+      })
+    })
+    .flatMap((value) => value)
+    .reduce((accumulator, value) => accumulator + value, 0)
+
+  const deliveryTax = 3.5
+
   return (
     <CheckoutContainer>
       <div>
@@ -63,15 +77,15 @@ export function Checkout() {
           <OrderOverviewContainer>
             <div>
               <h4>Total de itens</h4>
-              <span>R$ 29,90</span>
+              <span>R$ {totalPrice}0</span>
             </div>
             <div>
               <h4>Entrega</h4>
-              <span>R$ 3,50</span>
+              <span>R$ {deliveryTax}0</span>
             </div>
             <div>
               <h3>Total</h3>
-              <h3>R$ 50,00</h3>
+              <h3>R$ {totalPrice + deliveryTax}0</h3>
             </div>
           </OrderOverviewContainer>
           <button form="orderForm" type="submit">
