@@ -10,9 +10,12 @@ import { AddressForm } from './components/AddressForm'
 import { PaymentForm } from './components/PaymentForm'
 import { OrderCart } from './components/OrderCart'
 import { useCoffeeForm } from '../../contexts/FormContext'
+import { useNavigate } from 'react-router-dom'
 
 export function Checkout() {
   const { state } = useCoffeeForm()
+  const navigate = useNavigate()
+
   const uniqueCoffeesCartList = Array.from(
     new Set(state.cart.map((coffee) => coffee)),
   )
@@ -30,6 +33,10 @@ export function Checkout() {
     .reduce((accumulator, value) => accumulator + value, 0)
 
   const deliveryTax = 3.5
+
+  function handleOrder() {
+    navigate('/success')
+  }
 
   return (
     <CheckoutContainer>
@@ -88,7 +95,7 @@ export function Checkout() {
               <h3>R$ {totalPrice + deliveryTax}0</h3>
             </div>
           </OrderOverviewContainer>
-          <button form="orderForm" type="submit">
+          <button onClick={handleOrder} form="orderForm" type="submit">
             Confirmar Pedido
           </button>
         </OrderContainer>

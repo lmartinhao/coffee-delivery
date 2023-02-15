@@ -8,9 +8,10 @@ import {
   AddressInputArea,
   FormHeaderBoxYellow,
 } from './styles'
+import { FormActions, useCoffeeForm } from '../../../../contexts/FormContext'
 
 const newAddressFormSchema = zod.object({
-  cep: zod.string().length(8, 'Informe seu CEP'),
+  cep: zod.string().length(9, 'Informe seu CEP'),
   street: zod.string().min(1, 'Informe o nome da rua'),
   number: zod.string().min(1, 'Informe o número ou SN'),
   complement: zod.string().min(1, 'Informe o complemento ou NA'),
@@ -22,10 +23,11 @@ const newAddressFormSchema = zod.object({
 type NewAdressFormData = zod.infer<typeof newAddressFormSchema>
 
 export function AddressForm() {
+  const { state, dispatch } = useCoffeeForm()
   const { register, handleSubmit, reset } = useForm<NewAdressFormData>({
     resolver: zodResolver(newAddressFormSchema),
     defaultValues: {
-      cep: '00000-000',
+      cep: '',
       street: '',
       number: '',
       complement: '',
@@ -36,8 +38,11 @@ export function AddressForm() {
   })
 
   function handleCreateOrder(data: NewAdressFormData) {
-    console.log(data)
-    reset()
+    dispatch({
+      type: FormActions.setAddress,
+      payload: data,
+    })
+    console.log(state)
   }
 
   return (
@@ -59,7 +64,7 @@ export function AddressForm() {
           <input
             className="col-4 line"
             placeholder="CEP"
-            type="number"
+            type="text"
             {...register('cep')}
           />
           <input

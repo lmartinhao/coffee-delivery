@@ -7,7 +7,7 @@ import { createContext, ReactNode, useContext, useReducer } from 'react'
 
 type State = {
   cart: Array<string>
-  address: Object
+  address: Array<Object>
   payment: string
 }
 
@@ -33,7 +33,7 @@ type ContextType = {
 
 const initialData: State = {
   cart: [],
-  address: {},
+  address: [],
   payment: '',
 }
 

@@ -7,12 +7,18 @@ import {
   PaymentFormContainer,
   PaymentMethodsContainer,
 } from './styles'
+import { FormActions, useCoffeeForm } from '../../../../contexts/FormContext'
+import { FormEvent } from 'react'
 
 export function PaymentForm() {
-  const { register, handleSubmit } = useForm()
+  const { register } = useForm()
+  const { dispatch } = useCoffeeForm()
 
-  function handleCreateOrder(data: any) {
-    console.log(data)
+  function handleChoosePaymentMethod(event: FormEvent) {
+    dispatch({
+      type: FormActions.setPayment,
+      payload: (event.target as HTMLInputElement).value,
+    })
   }
 
   return (
@@ -27,16 +33,14 @@ export function PaymentForm() {
         </div>
       </FormHeaderBoxPurple>
       <div>
-        <InputFormContainer
-          id="orderForm"
-          onSubmit={handleSubmit(handleCreateOrder)}
-          action=""
-        >
+        <InputFormContainer id="orderForm" action="">
           <div>
             <input
               type="radio"
               value="credit"
               id="field-credit"
+              required
+              onClick={handleChoosePaymentMethod}
               {...register('payment')}
             />
             <PaymentMethodsContainer htmlFor="field-credit">
@@ -51,6 +55,8 @@ export function PaymentForm() {
               type="radio"
               value="debit"
               id="field-debit"
+              required
+              onClick={handleChoosePaymentMethod}
               {...register('payment')}
             />
             <PaymentMethodsContainer htmlFor="field-debit">
@@ -65,6 +71,8 @@ export function PaymentForm() {
               type="radio"
               value="money"
               id="field-money"
+              required
+              onClick={handleChoosePaymentMethod}
               {...register('payment')}
             />
             <PaymentMethodsContainer htmlFor="field-money">
