@@ -35,7 +35,6 @@ export function Checkout() {
   const deliveryTax = 3.5
 
   function handleOrder() {
-    console.log(state)
     if (state.address.street !== '' || state.address.number !== '') {
       navigate('/success')
       dispatch({
