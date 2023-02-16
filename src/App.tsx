@@ -5,17 +5,20 @@ import { Router } from './Router'
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 import { FormProvider } from './contexts/FormContext'
+import { ChakraProvider } from '@chakra-ui/react'
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <FormProvider>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
+      <ChakraProvider>
+        <FormProvider>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
 
-        <GlobalStyle />
-      </FormProvider>
+          <GlobalStyle />
+        </FormProvider>
+      </ChakraProvider>
     </ThemeProvider>
   )
 }

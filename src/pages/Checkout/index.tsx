@@ -11,10 +11,13 @@ import { PaymentForm } from './components/PaymentForm'
 import { OrderCart } from './components/OrderCart'
 import { FormActions, useCoffeeForm } from '../../contexts/FormContext'
 import { useNavigate } from 'react-router-dom'
+import { useToast } from '@chakra-ui/react'
+import { Coffee } from 'phosphor-react'
 
 export function Checkout() {
   const { state, dispatch } = useCoffeeForm()
   const navigate = useNavigate()
+  const toast = useToast()
 
   const uniqueCoffeesCartList = Array.from(
     new Set(state.cart.map((coffee) => coffee)),
@@ -42,7 +45,13 @@ export function Checkout() {
         payload: [],
       })
     } else {
-      alert('Por favor, preencha os dados')
+      toast({
+        title: 'Oops..!',
+        description: `Não esqueça de preencher com todos os dados para a entrega.`,
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
     }
   }
 

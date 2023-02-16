@@ -1,4 +1,5 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { useToast } from '@chakra-ui/react'
+import { Coffee, Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { useNavigate } from 'react-router-dom'
 import { useCoffeeForm, FormActions } from '../../../../contexts/FormContext'
 import {
@@ -32,6 +33,7 @@ export function CoffeeCard({
 }: CoffeeCardProps) {
   const { state, dispatch } = useCoffeeForm()
   const navigate = useNavigate()
+  const toast = useToast()
 
   function handleAddToCart(title: string) {
     const newCart = [...state.cart, title]
@@ -59,7 +61,13 @@ export function CoffeeCard({
     if (state.cart.length > 0) {
       navigate('/checkout')
     } else {
-      alert('Antes de seguir para o carrinho, selecione um café')
+      toast({
+        title: 'Oops..!',
+        description: 'Parece que você ainda não tem nenhum café no carrinho.',
+        status: 'warning',
+        duration: 9000,
+        isClosable: true,
+      })
     }
   }
 
