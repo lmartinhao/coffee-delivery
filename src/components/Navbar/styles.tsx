@@ -27,9 +27,15 @@ export const BaseBox = styled.div`
 
 export const CartBox = styled(BaseBox)`
   background: ${(props) => props.theme['yellow-100']};
+  cursor: pointer;
 
   svg {
     color: ${(props) => props.theme['yellow-700']};
+  }
+
+  button {
+    background-color: transparent;
+    cursor: pointer;
   }
 
   div {

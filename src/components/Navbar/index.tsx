@@ -3,13 +3,18 @@ import { useCoffeeForm } from '../../contexts/FormContext'
 
 import Logo from '../../assets/coffee-logo.svg'
 import { ShoppingCart, MapPin } from 'phosphor-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function Navbar() {
   const { state } = useCoffeeForm()
+  const navigate = useNavigate()
 
   function handleOverviewOrder() {
-    console.log(state.cart)
+    if (state.cart.length > 0) {
+      navigate('/checkout')
+    } else {
+      alert('Antes de seguir para o carrinho, selecione um café')
+    }
   }
 
   return (
@@ -22,15 +27,11 @@ export function Navbar() {
           <MapPin size={22} />
           <span>São Paulo, SP</span>
         </LocalizationBox>
-        <CartBox>
-          <Link to="/checkout">
-            <ShoppingCart
-              onClick={handleOverviewOrder}
-              size={22}
-              weight="fill"
-            />
+        <CartBox onClick={handleOverviewOrder}>
+          <button>
+            <ShoppingCart size={22} weight="fill" />
             <div>{state.cart.length}</div>
-          </Link>
+          </button>
         </CartBox>
       </nav>
     </NavbarContainer>
