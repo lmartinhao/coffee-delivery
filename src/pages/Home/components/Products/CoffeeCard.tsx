@@ -1,6 +1,5 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useCoffeeForm, FormActions } from '../../../../contexts/FormContext'
 import {
   AddToCartButton,
@@ -32,6 +31,7 @@ export function CoffeeCard({
   price,
 }: CoffeeCardProps) {
   const { state, dispatch } = useCoffeeForm()
+  const navigate = useNavigate()
 
   function handleAddToCart(title: string) {
     const newCart = [...state.cart, title]
@@ -53,6 +53,14 @@ export function CoffeeCard({
       type: FormActions.setCart,
       payload: cartWithoutRemovedCoffees,
     })
+  }
+
+  function handleOverviewOrder() {
+    if (state.cart.length > 0) {
+      navigate('/checkout')
+    } else {
+      alert('Antes de seguir para o carrinho, selecione um café')
+    }
   }
 
   return (
@@ -86,10 +94,8 @@ export function CoffeeCard({
               </span>
               <Plus onClick={() => handleAddToCart(title)} />
             </QuantityContainer>
-            <AddToCartButton>
-              <Link to="/checkout">
-                <ShoppingCart size={22} weight="fill" />
-              </Link>
+            <AddToCartButton onClick={handleOverviewOrder}>
+              <ShoppingCart size={22} weight="fill" />
             </AddToCartButton>
           </AddToCartContainer>
         </ItemValueContainer>

@@ -173,9 +173,10 @@ export const QuantityContainer = styled.div`
     color: ${(props) => props.theme['purple-500']};
   }
 `
-export const AddToCartButton = styled.div`
+export const AddToCartButton = styled.button`
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 
   svg {
     color: ${(props) => props.theme['gray-100']};
