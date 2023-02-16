@@ -56,9 +56,9 @@ export function OrderCart({ svg, title }: OrderCardProps) {
         <span>{title}</span>
         <QuantityContainer>
           <AddAndRemoveContainer>
-            <Plus onClick={() => handleAddToCart(title)} />{' '}
-            {coffeeQuantityPerType.length}{' '}
             <Minus onClick={() => handleRemoveFromCart(title)} />
+            {coffeeQuantityPerType.length}
+            <Plus onClick={() => handleAddToCart(title)} />
           </AddAndRemoveContainer>
           <AddAndRemoveContainer>
             <button

@@ -80,11 +80,11 @@ export function CoffeeCard({
 
           <AddToCartContainer>
             <QuantityContainer>
-              <Plus onClick={() => handleAddToCart(title)} />
+              <Minus onClick={() => handleRemoveFromCart(title)} />
               <span>
                 {state.cart.filter((coffee) => coffee === title).length}
               </span>
-              <Minus onClick={() => handleRemoveFromCart(title)} />
+              <Plus onClick={() => handleAddToCart(title)} />
             </QuantityContainer>
             <AddToCartButton>
               <Link to="/checkout">
