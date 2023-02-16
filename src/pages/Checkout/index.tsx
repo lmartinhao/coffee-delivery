@@ -101,7 +101,7 @@ export function Checkout() {
             </div>
             <div>
               <h3>Total</h3>
-              <h3>R$ {totalPrice + deliveryTax}0</h3>
+              <h3>R$ {(totalPrice + deliveryTax).toFixed(1)}0</h3>
             </div>
           </OrderOverviewContainer>
           <button onClick={handleOrder} form="orderForm" type="submit">
